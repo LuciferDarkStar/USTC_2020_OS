@@ -1,0 +1,15 @@
+cd ~/oslab/Linux-0.11
+mkdir dir1
+touch os.txt
+echo OS exp 1 > os.txt
+mv os.txt os_lab1.txt
+cat os_lab1.txt
+
+qemu-system-i386 -m 16 -boot a -fda Image -hda hdc-0.11.img -s -S 
+gdb
+file ~/oslab/Linux-0.11/tools/system
+target remote localhost:1234
+
+sudo mount -t minix -o loop,offset=512 ~/oslab/Linux-0.11/hdc-0.11.img ~/oslab/Linux-0.11/hdc
+sudo cp ~/1.txt ~/oslab/Linux-0.11/hdc/usr/root
+sudo umount /dev/loop15
